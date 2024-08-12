@@ -12,7 +12,6 @@
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown  --config .prettierrc.mjs"
     },
-    "prettier": ".prettierrc.mjs",
     "dependencies": {
         "next": "15.0.0-rc.0",
         "react": "19.0.0-rc-2d2cc042-20240809",

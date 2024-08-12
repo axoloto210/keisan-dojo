@@ -4,6 +4,8 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+const a = '123'
+
 const test = 'test'
 
 export const metadata: Metadata = {
