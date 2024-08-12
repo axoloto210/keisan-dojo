@@ -10,7 +10,7 @@
         "prepare": "husky"
     },
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown  --config .prettierrc.mjs"
+        "src/**/*": "prettier --write --ignore-unknown  --config .prettierrc.mjs"
     },
     "dependencies": {
         "next": "15.0.0-rc.0",
