@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
     title: 'Keisan Dojo',
     description:
-        '2けたの暗算など、計算の修行ができます。おみやげ算やインド式計算法などをみにつけよう！',
+        '2けたのかけ算の暗算など、計算の修行ができます。おみやげ算やインド式計算法などをみにつけよう！',
 }
 
 export default function RootLayout({
