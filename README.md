@@ -1,3 +1,7 @@
 ## Keisan Dojo
 Keisan Dojo is an application for training calculation and mental arithmetic skills.
+
+Learn different techniques and master multiplication between two-digit numbers.
+
+
 It is created using `Next.js 15 RC (15.0.0-rc.0)` and `React 19 RC (19.0.0-rc-2d2cc042-20240809)`.
