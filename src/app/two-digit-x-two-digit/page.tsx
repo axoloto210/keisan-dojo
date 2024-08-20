@@ -12,7 +12,7 @@ export default function Page() {
 
     return (
         <>
-            <h2>{questionCount} もんめ</h2>
+            <h2 className="p-4 text-6xl">{questionCount}問目</h2>
             <QuestionArea
                 key={questionCount}
                 clickHandlerNext={clickHandlerNext}
