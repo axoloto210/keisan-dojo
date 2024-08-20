@@ -25,23 +25,29 @@ export const QuestionArea = (props: QuestionAreaProps) => {
     return (
         <>
             {!!num1 && !!num2 ? (
-                <>
-                    <div>
+                <div>
+                    <div className="p-4 text-6xl">
                         {num1} × {num2}
                     </div>
                     {isDisplayAnswer ? (
                         <>
-                            <div>{num1 * num2}</div>
-                            <button onClick={props.clickHandlerNext}>
+                            <button
+                                onClick={props.clickHandlerNext}
+                                className="p-4 text-6xl"
+                            >
                                 つぎへ
                             </button>
+                            <div className="p-4 text-6xl">{num1 * num2}</div>
                         </>
                     ) : (
-                        <button onClick={clickHandlerDisplayAnswer}>
+                        <button
+                            onClick={clickHandlerDisplayAnswer}
+                            className="p-4 text-6xl"
+                        >
                             こたえ
                         </button>
                     )}
-                </>
+                </div>
             ) : (
                 <Loading />
             )}
