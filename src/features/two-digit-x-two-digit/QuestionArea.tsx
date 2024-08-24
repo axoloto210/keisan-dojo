@@ -31,21 +31,24 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                     </div>
                     {isDisplayAnswer ? (
                         <>
+                            <div className="p-4 text-6xl">{num1 * num2}</div>
                             <button
                                 onClick={props.clickHandlerNext}
                                 className="p-4 text-6xl"
                             >
                                 つぎへ
                             </button>
-                            <div className="p-4 text-6xl">{num1 * num2}</div>
                         </>
                     ) : (
-                        <button
-                            onClick={clickHandlerDisplayAnswer}
-                            className="p-4 text-6xl"
-                        >
-                            こたえ
-                        </button>
+                        <>
+                            <div className="p-4 text-6xl">？？？</div>
+                            <button
+                                onClick={clickHandlerDisplayAnswer}
+                                className="p-4 text-6xl"
+                            >
+                                こたえ
+                            </button>
+                        </>
                     )}
                 </div>
             ) : (
