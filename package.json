@@ -13,11 +13,14 @@
         "src/**/*": "prettier --write --ignore-unknown  --config .prettierrc.mjs"
     },
     "dependencies": {
+        "@formatjs/intl-localematcher": "^0.5.4",
+        "negotiator": "^0.6.3",
         "next": "15.0.0-rc.0",
         "react": "19.0.0-rc-2d2cc042-20240809",
         "react-dom": "19.0.0-rc-2d2cc042-20240809"
     },
     "devDependencies": {
+        "@types/negotiator": "^0.6.3",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
