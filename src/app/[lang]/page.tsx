@@ -1,14 +1,17 @@
+import { getDictionary } from '@/i18n/dictionaries'
+import { Language } from '@/i18n/settings'
 import Link from 'next/link'
 
-export default function Home({
+export default async function Home({
     params: { lang },
 }: {
-    params: { lang: string }
+    params: { lang: Language }
 }) {
+    const dict = await getDictionary(lang)
     return (
         <>
             <div>{lang}</div>
-            <Link href={'two-digit-x-two-digit'}>{'2けた×2けた'}</Link>
+            <Link href={'two-digit-x-two-digit'}>{dict['two-x-two']}</Link>
         </>
     )
 }

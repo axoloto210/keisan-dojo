@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-
-const DEFAULT_LOCALE = 'ja'
-const AVAILABLE_LOCALES = [DEFAULT_LOCALE, 'en-US', 'fr']
+import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from './i18n/settings'
 
 function getLocale(request: NextRequest) {
     const headers = {
