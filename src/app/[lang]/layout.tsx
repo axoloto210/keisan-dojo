@@ -1,6 +1,6 @@
 import { Header } from '@/components/layout/Header'
 import type { Metadata } from 'next'
-import './globals.css'
+import '../globals.css'
 
 export const metadata: Metadata = {
     title: 'Keisan Dojo',
