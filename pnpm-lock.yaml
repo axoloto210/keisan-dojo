@@ -14,9 +14,6 @@ importers:
       babel-plugin-react-compiler:
         specifier: 0.0.0-experimental-23b8160-20240916
         version: 0.0.0-experimental-23b8160-20240916
-      eslint-plugin-react-compiler:
-        specifier: 0.0.0-experimental-1e9896a-20240916
-        version: 0.0.0-experimental-1e9896a-20240916(eslint@8.57.0)
       negotiator:
         specifier: ^0.6.3
         version: 0.6.3
@@ -48,6 +45,9 @@ importers:
       eslint-config-next:
         specifier: 15.0.0-rc.0
         version: 15.0.0-rc.0(eslint@8.57.0)(typescript@5.5.4)
+      eslint-plugin-react-compiler:
+        specifier: 0.0.0-experimental-1e9896a-20240916
+        version: 0.0.0-experimental-1e9896a-20240916(eslint@8.57.0)
       husky:
         specifier: ^9.1.4
         version: 9.1.4
