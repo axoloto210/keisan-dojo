@@ -1,0 +1,27 @@
+@import '../styles/variables';
+
+.select_wrap {
+    background-color: $main;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    &:hover {
+        border-color: red;
+    }
+}
+
+.language_switcher {
+    appearance: none;
+    background-color: $main;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    margin: 0 auto;
+
+    &:hover {
+        color: red;
+    }
+}
