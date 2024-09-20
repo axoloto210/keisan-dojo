@@ -14,16 +14,23 @@ function getLocale(request: NextRequest) {
     return match(negotiatedLanguage, AVAILABLE_LOCALES, DEFAULT_LOCALE)
 }
 
+export const SWITCHED_LANGUAGE_KEY = 'switchedLanguage'
+
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
+    console.log('🚀 ~ middleware ~ pathname:', pathname)
+    debugger
 
     const pathnameHasLocale = AVAILABLE_LOCALES.some((locale) => {
         return pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     })
 
     if (!pathnameHasLocale) {
-        const locale = getLocale(request)
-        request.nextUrl.pathname = `/${locale}${pathname}`
+        let lang = request.cookies.has(SWITCHED_LANGUAGE_KEY)
+            ? request.cookies.get(SWITCHED_LANGUAGE_KEY)!.value
+            : getLocale(request)
+
+        request.nextUrl.pathname = `/${lang}${pathname}`
         return NextResponse.redirect(request.nextUrl)
     }
 

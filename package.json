@@ -15,6 +15,7 @@
     "dependencies": {
         "@formatjs/intl-localematcher": "^0.5.4",
         "babel-plugin-react-compiler": "0.0.0-experimental-23b8160-20240916",
+        "cookies-next": "^4.2.1",
         "negotiator": "^0.6.3",
         "next": "15.0.0-canary.157",
         "react": "19.0.0-rc-206df66e-20240912",
