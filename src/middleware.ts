@@ -18,8 +18,6 @@ export const SWITCHED_LANGUAGE_KEY = 'switchedLanguage'
 
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
-    console.log('🚀 ~ middleware ~ pathname:', pathname)
-    debugger
 
     const pathnameHasLocale = AVAILABLE_LOCALES.some((locale) => {
         return pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`

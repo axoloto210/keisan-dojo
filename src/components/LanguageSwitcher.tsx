@@ -1,10 +1,6 @@
 'use client'
 
-import {
-    AVAILABLE_LANGUAGES,
-    AVAILABLE_LOCALES,
-    DEFAULT_LOCALE,
-} from '@/i18n/settings'
+import { AVAILABLE_LANGUAGES, DEFAULT_LOCALE } from '@/i18n/settings'
 import style from './languageSwitcher.module.scss'
 import { useState } from 'react'
 import { getCookie, setCookie } from 'cookies-next' // https://www.npmjs.com/package/cookies-next
