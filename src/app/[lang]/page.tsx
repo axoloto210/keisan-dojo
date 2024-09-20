@@ -7,11 +7,13 @@ export default async function Home({
 }: {
     params: { lang: Language }
 }) {
-    const dict = await getDictionary(lang)
+    const dict = await getDictionary(lang, 'home')
     return (
         <>
             <div>{lang}</div>
-            <Link href={'two-digit-x-two-digit'}>{dict['two-x-two']}</Link>
+            <Link href={`${lang}/two-digit-x-two-digit`}>
+                {dict['two-x-two']}
+            </Link>
         </>
     )
 }

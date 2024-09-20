@@ -1,12 +1,40 @@
 import 'server-only'
 import { Language } from './settings'
 
-const DICTIONARIES = {
-    // TODO: Enable importing of additional JSON files.
-    ja: () => import('./locale/ja/home.json').then((module) => module.default),
-    'en-US': () =>
-        import('./locale/en-US/home.json').then((module) => module.default),
-    fr: () => import('./locale/fr/home.json').then((module) => module.default),
+const LANGUAGE_PATHS = {
+    ja: 'locale/ja',
+    'en-US': 'locale/en-US',
+    fr: 'locale/fr',
+} as const satisfies { [lang in Language]: string }
+
+type DictionaryLoader = (
+    lang: Language,
+    fileName: string
+) => Promise<{ [key: string]: string }>
+
+const createDictionaryLoader = (): DictionaryLoader => {
+    return async (lang: Language, fileName: string) => {
+        if (!LANGUAGE_PATHS[lang]) {
+            throw new Error(`Unsupported language: ${lang}`)
+        }
+
+        try {
+            const dictionaryModule = await import(
+                `./${LANGUAGE_PATHS[lang]}/${fileName}.json`
+            )
+            return dictionaryModule.default
+        } catch (error) {
+            console.error(
+                `Failed to load dictionary for ${lang}/${fileName}.json:`,
+                error
+            )
+            throw error
+        }
+    }
 }
 
-export const getDictionary = async (locale: Language) => DICTIONARIES[locale]()
+export const dictionaryLoader = createDictionaryLoader()
+
+export const getDictionary = async (locale: Language, fileName: string) => {
+    return dictionaryLoader(locale, fileName)
+}
