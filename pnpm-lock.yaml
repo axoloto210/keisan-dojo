@@ -19,16 +19,13 @@ importers:
         version: 0.6.3
       next:
         specifier: 15.0.0-canary.157
-        version: 15.0.0-canary.157(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-23b8160-20240916)(react-dom@19.0.0-rc-f2df5694-20240916(react@19.0.0-rc-f2df5694-20240916))(react@19.0.0-rc-f2df5694-20240916)(sass@1.79.2)
+        version: 15.0.0-canary.157(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-23b8160-20240916)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sass@1.79.2)
       react:
-        specifier: 19.0.0-rc-f2df5694-20240916
-        version: 19.0.0-rc-f2df5694-20240916
+        specifier: 19.0.0-rc-206df66e-20240912
+        version: 19.0.0-rc-206df66e-20240912
       react-dom:
-        specifier: 19.0.0-rc-f2df5694-20240916
-        version: 19.0.0-rc-f2df5694-20240916(react@19.0.0-rc-f2df5694-20240916)
-      sass:
-        specifier: ^1.79.2
-        version: 1.79.2
+        specifier: 19.0.0-rc-206df66e-20240912
+        version: 19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912)
     devDependencies:
       '@types/negotiator':
         specifier: ^0.6.3
@@ -63,6 +60,9 @@ importers:
       prettier:
         specifier: 3.3.3
         version: 3.3.3
+      sass:
+        specifier: ^1.79.2
+        version: 1.79.2
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.9
@@ -1718,16 +1718,16 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-dom@19.0.0-rc-f2df5694-20240916:
-    resolution: {integrity: sha512-z5bmlgbhXEUNO902dKEuy61Lk/6E06ESsufiIdykddfyhggoRd/0GSZiUH12bGnwmzMnojICk2yI3yNpPIwpCw==}
+  react-dom@19.0.0-rc-206df66e-20240912:
+    resolution: {integrity: sha512-HT04eBSwoBW0vkoo3wpUvHTr28fTP3kOPGNFMRT2O+gkxGX8at1LvI0/0WpcLObuLfVTbD/044N+BXyztZhomw==}
     peerDependencies:
-      react: 19.0.0-rc-f2df5694-20240916
+      react: 19.0.0-rc-206df66e-20240912
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react@19.0.0-rc-f2df5694-20240916:
-    resolution: {integrity: sha512-nGf0C1nmtK44uZVBGB1i320+oZpIL4YibvcDUpKQu/2wR/giIydwzVyx4mjsWRXbYDoyX240F04tHoYLTT2a2w==}
+  react@19.0.0-rc-206df66e-20240912:
+    resolution: {integrity: sha512-jGaTINz9o42gjsLcEuHLGqp6J/97vIX1bMgpVYCM8WHVI7O+g2wkudlODszpEn2YrrQB1vBXlQjGgGRbJUdyow==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -1796,8 +1796,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  scheduler@0.25.0-rc-f2df5694-20240916:
-    resolution: {integrity: sha512-Gn75L9/3lldtLjFYgpsweYP3726xP/cgr23dsD6UZlLHc6RbkPbWiChQOfNuq21r8qManuD8p9hAHpXvtlvvbQ==}
+  scheduler@0.25.0-rc-206df66e-20240912:
+    resolution: {integrity: sha512-5jBhjAvvoH3tf/LdrbqWggN8njR4Y2gD3XsT93Eer2WwjKYR2MekGWmfLtmbgqoCP9upnme0nMsGnKJ7R4hmmg==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -3767,7 +3767,7 @@ snapshots:
 
   negotiator@0.6.3: {}
 
-  next@15.0.0-canary.157(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-23b8160-20240916)(react-dom@19.0.0-rc-f2df5694-20240916(react@19.0.0-rc-f2df5694-20240916))(react@19.0.0-rc-f2df5694-20240916)(sass@1.79.2):
+  next@15.0.0-canary.157(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-23b8160-20240916)(react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912))(react@19.0.0-rc-206df66e-20240912)(sass@1.79.2):
     dependencies:
       '@next/env': 15.0.0-canary.157
       '@swc/counter': 0.1.3
@@ -3776,9 +3776,9 @@ snapshots:
       caniuse-lite: 1.0.30001651
       graceful-fs: 4.2.11
       postcss: 8.4.31
-      react: 19.0.0-rc-f2df5694-20240916
-      react-dom: 19.0.0-rc-f2df5694-20240916(react@19.0.0-rc-f2df5694-20240916)
-      styled-jsx: 5.1.6(@babel/core@7.25.2)(react@19.0.0-rc-f2df5694-20240916)
+      react: 19.0.0-rc-206df66e-20240912
+      react-dom: 19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912)
+      styled-jsx: 5.1.6(@babel/core@7.25.2)(react@19.0.0-rc-206df66e-20240912)
     optionalDependencies:
       '@next/swc-darwin-arm64': 15.0.0-canary.157
       '@next/swc-darwin-x64': 15.0.0-canary.157
@@ -3977,14 +3977,14 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-dom@19.0.0-rc-f2df5694-20240916(react@19.0.0-rc-f2df5694-20240916):
+  react-dom@19.0.0-rc-206df66e-20240912(react@19.0.0-rc-206df66e-20240912):
     dependencies:
-      react: 19.0.0-rc-f2df5694-20240916
-      scheduler: 0.25.0-rc-f2df5694-20240916
+      react: 19.0.0-rc-206df66e-20240912
+      scheduler: 0.25.0-rc-206df66e-20240912
 
   react-is@16.13.1: {}
 
-  react@19.0.0-rc-f2df5694-20240916: {}
+  react@19.0.0-rc-206df66e-20240912: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -4065,7 +4065,7 @@ snapshots:
       immutable: 4.3.7
       source-map-js: 1.2.0
 
-  scheduler@0.25.0-rc-f2df5694-20240916: {}
+  scheduler@0.25.0-rc-206df66e-20240912: {}
 
   semver@6.3.1: {}
 
@@ -4234,10 +4234,10 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  styled-jsx@5.1.6(@babel/core@7.25.2)(react@19.0.0-rc-f2df5694-20240916):
+  styled-jsx@5.1.6(@babel/core@7.25.2)(react@19.0.0-rc-206df66e-20240912):
     dependencies:
       client-only: 0.0.1
-      react: 19.0.0-rc-f2df5694-20240916
+      react: 19.0.0-rc-206df66e-20240912
     optionalDependencies:
       '@babel/core': 7.25.2
 
