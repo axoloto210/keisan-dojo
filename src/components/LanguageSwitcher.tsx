@@ -1,6 +1,10 @@
 'use client'
 
-import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from '@/i18n/settings'
+import {
+    AVAILABLE_LANGUAGES,
+    AVAILABLE_LOCALES,
+    DEFAULT_LOCALE,
+} from '@/i18n/settings'
 import style from './languageSwitcher.module.scss'
 import { useState } from 'react'
 import { getCookie, setCookie } from 'cookies-next' // https://www.npmjs.com/package/cookies-next
@@ -29,18 +33,20 @@ export function LanguageSwitcher() {
     }
 
     return (
-        <select
-            className={style.language_switcher}
-            value={selectedLanguage}
-            onChange={changeEventHandler}
-        >
-            {AVAILABLE_LOCALES.map((lang) => {
-                return (
-                    <option key={lang} value={lang}>
-                        {lang}
-                    </option>
-                )
-            })}
-        </select>
+        <div className={style.select_wrap}>
+            <select
+                className={style.language_switcher}
+                value={selectedLanguage}
+                onChange={changeEventHandler}
+            >
+                {AVAILABLE_LANGUAGES.map((lang) => {
+                    return (
+                        <option key={lang.locale} value={lang.locale}>
+                            {`${lang.flag} ${lang.name}`}
+                        </option>
+                    )
+                })}
+            </select>
+        </div>
     )
 }

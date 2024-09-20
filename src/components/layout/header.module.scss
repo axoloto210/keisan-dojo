@@ -1,5 +1,7 @@
+@import '../../styles/variables';
+
 .header {
-    background-color: #1f2937;
+    background-color: $main;
     color: white;
     display: flex;
     padding: 16px;
