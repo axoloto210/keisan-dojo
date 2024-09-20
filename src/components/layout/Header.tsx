@@ -1,13 +1,18 @@
 import Link from 'next/link'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import style from './header.module.scss'
+import { Language } from '@/i18n/settings'
+import { getDictionary } from '@/i18n/dictionaries'
 
-export const Header = () => {
+type HeaderProps = { lang: Language }
+
+export const Header = async ({ lang }: HeaderProps) => {
+    const dict = await getDictionary(lang, 'home')
     return (
         <header className={style.header}>
             <h1 className="text-4xl font-bold text-left">
                 <Link href={'/'} className=" hover:text-red-600">
-                    Keisan Dojo
+                    {dict.title}
                 </Link>
             </h1>
             <div className={style.language_switcher}>

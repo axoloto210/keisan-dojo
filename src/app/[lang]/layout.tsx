@@ -1,21 +1,32 @@
 import { Header } from '@/components/layout/Header'
 import type { Metadata } from 'next'
 import '../globals.css'
+import { Language } from '@/i18n/settings'
+import { getDictionary } from '@/i18n/dictionaries'
 
-export const metadata: Metadata = {
-    title: 'Keisan Dojo',
-    description: '2けたのかけ算の暗算など、計算の修行ができます。',
+export async function generateMetadata({
+    params: { lang },
+}: {
+    params: { lang: Language }
+}): Promise<Metadata> {
+    const dict = await getDictionary(lang, 'home')
+    return {
+        title: dict.title,
+        description: dict.description,
+    }
 }
 
 export default function RootLayout({
+    params: { lang },
     children,
 }: Readonly<{
+    params: { lang: Language }
     children: React.ReactNode
 }>) {
     return (
-        <html lang="ja">
+        <html lang={`${lang}`}>
             <body className="bg-slate-500">
-                <Header />
+                <Header lang={lang} />
                 <main className="bg-white max-w-screen-md mx-auto min-h-screen">
                     <div className="flex  flex-col items-center justify-between">
                         {children}
