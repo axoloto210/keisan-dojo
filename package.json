@@ -19,7 +19,8 @@
         "negotiator": "^0.6.3",
         "next": "15.0.0-canary.157",
         "react": "19.0.0-rc-206df66e-20240912",
-        "react-dom": "19.0.0-rc-206df66e-20240912"
+        "react-dom": "19.0.0-rc-206df66e-20240912",
+        "server-only": "^0.0.1"
     },
     "devDependencies": {
         "@types/negotiator": "^0.6.3",
