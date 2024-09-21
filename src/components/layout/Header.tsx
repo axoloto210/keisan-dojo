@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { LanguageSwitcher } from '../LanguageSwitcher'
 import style from './header.module.scss'
 import { Language } from '@/i18n/settings'
-import { getDictionary } from '@/i18n/dictionaries'
+import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
 
 type HeaderProps = { lang: Language }
 
 export const Header = async ({ lang }: HeaderProps) => {
-    const dict = await getDictionary(lang, 'home')
+    const dict = await getDictionary(lang, DICTIONARY_NAMES.HOME)
     return (
         <header className={style.header}>
             <h1 className="text-4xl font-bold text-left">
@@ -21,4 +21,3 @@ export const Header = async ({ lang }: HeaderProps) => {
         </header>
     )
 }
-;``
