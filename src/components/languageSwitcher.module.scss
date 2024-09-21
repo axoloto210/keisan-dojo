@@ -1,7 +1,7 @@
-@import '../styles/variables';
+@import 'variables';
 
 .select_wrap {
-    background-color: $main;
+    background-color: $main-color;
     border: 2px solid white;
     border-radius: 4px;
     cursor: pointer;
@@ -11,7 +11,7 @@
 
 .language_switcher {
     appearance: none;
-    background-color: $main;
+    background-color: $main-color;
     border-radius: 4px;
     color: white;
     cursor: pointer;
