@@ -38,3 +38,8 @@ export const dictionaryLoader = createDictionaryLoader()
 export const getDictionary = async (locale: Language, fileName: string) => {
     return dictionaryLoader(locale, fileName)
 }
+
+export const DICTIONARY_NAMES = {
+    HOME: 'home',
+    INDIAN_METHOD: 'guide/indian-method',
+} as const satisfies { [key: string]: string }

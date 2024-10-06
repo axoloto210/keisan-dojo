@@ -1,4 +1,4 @@
-import { getDictionary } from '@/i18n/dictionaries'
+import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
 import { Language } from '@/i18n/settings'
 import Link from 'next/link'
 
@@ -7,12 +7,17 @@ export default async function Home({
 }: {
     params: { lang: Language }
 }) {
-    const dict = await getDictionary(lang, 'home')
+    const [homeDict, indianMethodDict] = await Promise.all([
+        await getDictionary(lang, DICTIONARY_NAMES.HOME),
+        await getDictionary(lang, DICTIONARY_NAMES.INDIAN_METHOD),
+    ])
     return (
         <>
-            <div>{lang}</div>
             <Link href={`${lang}/two-digit-x-two-digit`}>
-                {dict['two-x-two']}
+                {homeDict['two-x-two']}
+            </Link>
+            <Link href={`${lang}/guide/indian-method`}>
+                {indianMethodDict.title}
             </Link>
         </>
     )
