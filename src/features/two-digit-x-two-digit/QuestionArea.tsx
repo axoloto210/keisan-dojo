@@ -1,19 +1,20 @@
-'use client'
-
 import { Loading } from '@/components/layout/Loading'
 import { useEffect, useState } from 'react'
+import questionAreaStyle from './questionArea.module.scss'
 
 type QuestionAreaProps = {
     clickHandlerNext: () => void
 }
 
 export const QuestionArea = (props: QuestionAreaProps) => {
-    const [num1, setNum1] = useState<number>()
-    const [num2, setNum2] = useState<number>()
+    const [firstDigit, setFirstDigit] = useState<number>()
+    const [secondDigit, setSecondDigit] = useState<number>()
+
+    const { clickHandlerNext } = props
 
     useEffect(() => {
-        setNum1(10 + (Math.floor(Math.random() * 100) % 90))
-        setNum2(10 + (Math.floor(Math.random() * 100) % 90))
+        setFirstDigit(10 + (Math.floor(Math.random() * 100) % 90))
+        setSecondDigit(10 + (Math.floor(Math.random() * 100) % 90))
     }, [])
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
@@ -22,29 +23,51 @@ export const QuestionArea = (props: QuestionAreaProps) => {
         setIsDisplayAnswer(true)
     }
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Enter') {
+                if (isDisplayAnswer) {
+                    clickHandlerNext()
+                } else {
+                    clickHandlerDisplayAnswer()
+                }
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [isDisplayAnswer, clickHandlerNext])
+
     return (
         <>
-            {!!num1 && !!num2 ? (
+            {!!firstDigit && !!secondDigit ? (
                 <div>
-                    <div className="p-4 text-6xl">
-                        {num1} × {num2}
+                    <div className={questionAreaStyle.question}>
+                        {firstDigit} × {secondDigit}
                     </div>
                     {isDisplayAnswer ? (
                         <>
-                            <div className="p-4 text-6xl">{num1 * num2}</div>
+                            <div className={questionAreaStyle.question}>
+                                {firstDigit * secondDigit}
+                            </div>
                             <button
                                 onClick={props.clickHandlerNext}
-                                className="p-4 text-6xl"
+                                className={questionAreaStyle.question}
                             >
                                 つぎへ
                             </button>
                         </>
                     ) : (
                         <>
-                            <div className="p-4 text-6xl">？？？</div>
+                            <div className={questionAreaStyle.question}>
+                                ？？？
+                            </div>
                             <button
                                 onClick={clickHandlerDisplayAnswer}
-                                className="p-4 text-6xl"
+                                className={questionAreaStyle.question}
                             >
                                 こたえ
                             </button>
