@@ -44,7 +44,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
     return (
         <>
             {!!firstDigit && !!secondDigit ? (
-                <div>
+                <div className={questionAreaStyle.container}>
                     <div className={questionAreaStyle.question}>
                         {firstDigit} × {secondDigit}
                     </div>
