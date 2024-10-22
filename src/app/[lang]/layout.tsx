@@ -4,11 +4,13 @@ import '../globals.css'
 import { Language } from '@/i18n/settings'
 import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
 
-export async function generateMetadata({
-    params: { lang },
-}: {
-    params: { lang: Language }
+export async function generateMetadata(props: {
+    params: Promise<{ lang: Language }>
 }): Promise<Metadata> {
+    const params = await props.params
+
+    const { lang } = params
+
     const dict = await getDictionary(lang, DICTIONARY_NAMES.HOME)
     return {
         title: dict.title,
@@ -16,13 +18,18 @@ export async function generateMetadata({
     }
 }
 
-export default function RootLayout({
-    params: { lang },
-    children,
-}: Readonly<{
-    params: { lang: Language }
-    children: React.ReactNode
-}>) {
+export default async function RootLayout(
+    props: Readonly<{
+        params: Promise<{ lang: Language }>
+        children: React.ReactNode
+    }>
+) {
+    const params = await props.params
+
+    const { lang } = params
+
+    const { children } = props
+
     return (
         <html lang={`${lang}`}>
             <body className="bg-slate-500">
