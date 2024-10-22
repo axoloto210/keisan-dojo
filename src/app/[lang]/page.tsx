@@ -2,11 +2,13 @@ import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
 import { Language } from '@/i18n/settings'
 import Link from 'next/link'
 
-export default async function Home({
-    params: { lang },
-}: {
-    params: { lang: Language }
+export default async function Home(props: {
+    params: Promise<{ lang: Language }>
 }) {
+    const params = await props.params
+
+    const { lang } = params
+
     const [homeDict, indianMethodDict] = await Promise.all([
         await getDictionary(lang, DICTIONARY_NAMES.HOME),
         await getDictionary(lang, DICTIONARY_NAMES.INDIAN_METHOD),
