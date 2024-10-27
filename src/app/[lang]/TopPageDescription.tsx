@@ -1,5 +1,7 @@
+import { DICTIONARY } from '@/i18n/dictionaries'
+
 type TopPageDescriptionProps = {
-    dict: { [key: string]: string }
+    dict: DICTIONARY
 }
 
 export function TopPageDescription(props: TopPageDescriptionProps) {

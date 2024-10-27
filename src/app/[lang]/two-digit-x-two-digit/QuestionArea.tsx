@@ -1,16 +1,18 @@
 import { Loading } from '@/components/layout/Loading'
 import { useEffect, useState } from 'react'
 import questionAreaStyle from './questionArea.module.scss'
+import { DICTIONARY } from '@/i18n/dictionaries'
 
 type QuestionAreaProps = {
     clickHandlerNext: () => void
+    dict: DICTIONARY
 }
 
 export const QuestionArea = (props: QuestionAreaProps) => {
     const [firstDigit, setFirstDigit] = useState<number>()
     const [secondDigit, setSecondDigit] = useState<number>()
 
-    const { clickHandlerNext } = props
+    const { clickHandlerNext, dict } = props
 
     useEffect(() => {
         setFirstDigit(10 + (Math.floor(Math.random() * 100) % 90))
@@ -57,7 +59,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                                 onClick={props.clickHandlerNext}
                                 className={questionAreaStyle.question}
                             >
-                                つぎへ⏎
+                                {dict.next}⏎
                             </button>
                         </>
                     ) : (
@@ -69,7 +71,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                                 onClick={clickHandlerDisplayAnswer}
                                 className={questionAreaStyle.question}
                             >
-                                こたえ⏎
+                                {dict.answer}⏎
                             </button>
                         </>
                     )}

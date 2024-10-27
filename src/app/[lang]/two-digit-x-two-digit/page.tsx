@@ -1,28 +1,20 @@
-'use client'
+import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
+import { QuestionBox } from './QuestionBox'
+import { Language } from '@/i18n/settings'
 
-import { QuestionArea } from '@/features/two-digit-x-two-digit/QuestionArea'
-import { useState } from 'react'
+export default async function Page(props: {
+    params: Promise<{ lang: Language }>
+}) {
+    const params = await props.params
+    const { lang } = params
 
-import questionAreaStyle from '@/features/two-digit-x-two-digit/questionArea.module.scss'
-
-export default function Page() {
-    const [questionCount, setQuestionCount] = useState<number>(1)
-
-    const clickHandlerNext = () => {
-        setQuestionCount((count) => count + 1)
-    }
-
+    const dict = await getDictionary(
+        lang,
+        DICTIONARY_NAMES.TWO_DIGIT_X_TWO_DIGIT
+    )
     return (
         <>
-            <div className={questionAreaStyle.container}>
-                <div className={questionAreaStyle.question}>
-                    {questionCount}問目
-                </div>
-                <QuestionArea
-                    key={questionCount}
-                    clickHandlerNext={clickHandlerNext}
-                />
-            </div>
+            <QuestionBox dict={dict} />
         </>
     )
 }
