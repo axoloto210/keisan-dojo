@@ -1,0 +1,12 @@
+.linkButton {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 24px;
+    .link {
+        font-size: 24px;
+        border: 1px solid blue;
+        border-radius: 8px;
+        padding: 4px;
+    }
+}
