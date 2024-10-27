@@ -1,3 +1,3 @@
 export const Loading = () => {
-    return <div>よみこみちゅう...</div>
+    return <div>...</div>
 }

@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as *;
 
 .select_wrap {
     background-color: $main-color;

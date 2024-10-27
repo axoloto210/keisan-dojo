@@ -10,7 +10,7 @@ const LANGUAGE_PATHS = {
 type DictionaryLoader = (
     lang: Language,
     fileName: string
-) => Promise<{ [key: string]: string }>
+) => Promise<DICTIONARY>
 
 const createDictionaryLoader = (): DictionaryLoader => {
     return async (lang: Language, fileName: string) => {
@@ -33,7 +33,7 @@ const createDictionaryLoader = (): DictionaryLoader => {
     }
 }
 
-export const dictionaryLoader = createDictionaryLoader()
+const dictionaryLoader = createDictionaryLoader()
 
 export const getDictionary = async (locale: Language, fileName: string) => {
     return dictionaryLoader(locale, fileName)
@@ -41,5 +41,10 @@ export const getDictionary = async (locale: Language, fileName: string) => {
 
 export const DICTIONARY_NAMES = {
     HOME: 'home',
+    TWO_DIGIT_X_TWO_DIGIT: 'two-digit-x-two-digit',
     INDIAN_METHOD: 'guide/indian-method',
-} as const satisfies { [key: string]: string }
+} as const satisfies DICTIONARY
+
+export type DICTIONARY = {
+    [key: string]: string
+}
