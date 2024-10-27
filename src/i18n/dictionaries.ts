@@ -33,7 +33,7 @@ const createDictionaryLoader = (): DictionaryLoader => {
     }
 }
 
-export const dictionaryLoader = createDictionaryLoader()
+const dictionaryLoader = createDictionaryLoader()
 
 export const getDictionary = async (locale: Language, fileName: string) => {
     return dictionaryLoader(locale, fileName)
