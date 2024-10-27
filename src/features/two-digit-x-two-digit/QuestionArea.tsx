@@ -57,7 +57,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                                 onClick={props.clickHandlerNext}
                                 className={questionAreaStyle.question}
                             >
-                                つぎへ
+                                つぎへ⏎
                             </button>
                         </>
                     ) : (
@@ -69,7 +69,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                                 onClick={clickHandlerDisplayAnswer}
                                 className={questionAreaStyle.question}
                             >
-                                こたえ
+                                こたえ⏎
                             </button>
                         </>
                     )}
