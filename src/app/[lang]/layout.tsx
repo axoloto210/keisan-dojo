@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import '../globals.css'
 import { Language } from '@/i18n/settings'
 import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
+import { Analytics } from '@vercel/analytics/react'
 
 export async function generateMetadata(props: {
     params: Promise<{ lang: Language }>
@@ -37,6 +38,7 @@ export default async function RootLayout(
                 <main className="bg-white max-w-screen-md mx-auto min-h-screen">
                     {children}
                 </main>
+                <Analytics />
             </body>
         </html>
     )
