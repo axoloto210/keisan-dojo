@@ -15,8 +15,8 @@ export const QuestionArea = (props: QuestionAreaProps) => {
     const { clickHandlerNext, dict } = props
 
     useEffect(() => {
-        setFirstDigit(10 + (Math.floor(Math.random() * 100) % 90))
-        setSecondDigit(10 + (Math.floor(Math.random() * 100) % 90))
+        setFirstDigit(Math.floor(Math.random() * 89) + 11)
+        setSecondDigit(Math.floor(Math.random() * 89) + 11)
     }, [])
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
