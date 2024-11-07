@@ -1,7 +1,7 @@
-import { DICTIONARY } from '@/i18n/dictionaries'
+import { Dictionary } from '@/i18n/dictionaries'
 
 type TopPageDescriptionProps = {
-    dict: DICTIONARY
+    dict: Dictionary
 }
 
 export function TopPageDescription(props: TopPageDescriptionProps) {
