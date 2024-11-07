@@ -1,11 +1,11 @@
 import { Loading } from '@/components/layout/Loading'
 import { useEffect, useState } from 'react'
 import questionAreaStyle from './questionArea.module.scss'
-import { DICTIONARY } from '@/i18n/dictionaries'
+import { Dictionary } from '@/i18n/dictionaries'
 
 type QuestionAreaProps = {
     clickHandlerNext: () => void
-    dict: DICTIONARY
+    dict: Dictionary
 }
 
 export const QuestionArea = (props: QuestionAreaProps) => {

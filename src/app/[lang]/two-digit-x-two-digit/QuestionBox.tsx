@@ -4,10 +4,10 @@ import { QuestionArea } from '@/app/[lang]/two-digit-x-two-digit/QuestionArea'
 import { useState } from 'react'
 
 import questionAreaStyle from '@/app/[lang]/two-digit-x-two-digit/questionArea.module.scss'
-import { DICTIONARY } from '@/i18n/dictionaries'
+import { Dictionary } from '@/i18n/dictionaries'
 
 type QuestionBoxProps = {
-    dict: DICTIONARY
+    dict: Dictionary
 }
 
 export function QuestionBox(questionBoxProps: QuestionBoxProps) {
