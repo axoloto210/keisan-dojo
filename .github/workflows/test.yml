@@ -1,0 +1,30 @@
+name: Test
+on:
+  pull_request:
+    paths:
+      - 'src/**/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install pnpm and dependencies
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+
+      # Setup Node.js and cache dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
+
+      # --frozen-lockfile option is true when environment is CI
+      - run: pnpm install
+
+      # Run your test script
+      - run: pnpm test
