@@ -15,7 +15,10 @@ export const QuestionArea = (props: QuestionAreaProps) => {
     const { clickHandlerNext, dict } = props
 
     useEffect(() => {
-        const firstRandomNumber = Math.floor(Math.random() * 89) + 11
+        const firstRandomNumber =
+            Math.floor(Math.random() * 9) * 10 +
+            Math.floor(Math.random() * 9) +
+            11
         const secondRandomNumber =
             Math.floor(firstRandomNumber / 10) * 10 +
             (10 - (firstRandomNumber % 10))
