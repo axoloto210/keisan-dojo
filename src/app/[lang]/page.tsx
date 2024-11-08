@@ -26,6 +26,11 @@ export default async function Home(props: {
                     {homeDict['two-x-two']}
                 </Link>
             </div>
+            <div className={style.linkButton}>
+                <Link className={style.link} href={`${lang}/indian`}>
+                    {`indian`}
+                </Link>
+            </div>
             {/* <Link href={`${lang}/guide/indian-method`}>
                 {indianMethodDict.title}
             </Link> */}
