@@ -17,23 +17,26 @@ export default async function Home(props: {
     return (
         <>
             <TopPageDescription dict={homeDict} />
-            <div className={style.linkButton}>
-                <Link
-                    className={style.link}
-                    href={`${lang}/two-digit-x-two-digit`}
-                >
-                    {homeDict['two-x-two']}
-                </Link>
-            </div>
-            <div className={style.linkButton}>
-                <Link className={style.link} href={`${lang}/indian`}>
-                    {homeDict.indian}
-                </Link>
-            </div>
-            <div className={style.linkButton}>
-                <Link className={style.link} href={`${lang}/indian-2`}>
-                    {homeDict['indian-2']}
-                </Link>
+            <div className={style.link_container}>
+                <p className={style.menu}>{homeDict.menu}</p>
+                <div className={style.link_button}>
+                    <Link className={style.link} href={`${lang}/indian`}>
+                        {homeDict.indian}
+                    </Link>
+                </div>
+                <div className={style.link_button}>
+                    <Link className={style.link} href={`${lang}/indian-2`}>
+                        {homeDict['indian-2']}
+                    </Link>
+                </div>
+                <div className={style.link_button}>
+                    <Link
+                        className={style.link}
+                        href={`${lang}/two-digit-x-two-digit`}
+                    >
+                        {homeDict['two-x-two']}
+                    </Link>
+                </div>
             </div>
         </>
     )
