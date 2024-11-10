@@ -2,5 +2,6 @@
     "title": "Calculation Dojo",
     "description": "You can practice calculation, such as memorizing two-digit multiplications.",
     "two-x-two": "2 × 2 digits",
-    "indian": "Indian style (2 × 2 digits)"
+    "indian": "Indian style (2 × 2 digits)",
+    "indian-2": "Indian style (10th place equal)"
 }

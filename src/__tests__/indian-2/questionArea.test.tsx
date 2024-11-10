@@ -1,4 +1,4 @@
-import { createNumbers } from '@/app/[lang]/two-digit-x-two-digit/createNumbers'
+import { createNumbers } from '@/app/[lang]/indian/createRandomNumber'
 import { QuestionArea } from '@/features/two-digit-x-two-digit/QuestionArea'
 import {
     Dictionary,
@@ -8,7 +8,7 @@ import {
 import '@testing-library/jest-dom'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 
-describe('two-x-two Question Area', () => {
+describe('indian two-x-two Question Area', () => {
     let dict: Dictionary
 
     beforeAll(async () => {
@@ -16,7 +16,7 @@ describe('two-x-two Question Area', () => {
     })
 
     afterEach(() => {
-        cleanup() // Clean up the DOM after each test
+        cleanup()
     })
 
     test('ja dictionary can be loaded', () => {
@@ -56,7 +56,7 @@ describe('two-x-two Question Area', () => {
         expect(answerElement).toHaveTextContent(String(answer))
     })
 
-    test('should generate firstNumber and secondNumber between 11 and 99 (100 times)', () => {
+    test('should generate numbers that tens place is same (100 times)', () => {
         const clickHandlerNext = jest.fn()
 
         for (let i = 0; i < 100; i++) {
@@ -85,6 +85,11 @@ describe('two-x-two Question Area', () => {
             expect(firstNumber).toBeLessThanOrEqual(99)
             expect(secondNumber).toBeGreaterThanOrEqual(11)
             expect(secondNumber).toBeLessThanOrEqual(99)
+
+            // Check valid number set
+            expect(Math.floor(secondNumber / 10)).toBe(
+                Math.floor(firstNumber / 10)
+            )
 
             cleanup()
         }
