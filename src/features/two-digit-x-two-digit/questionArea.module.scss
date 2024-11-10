@@ -10,23 +10,24 @@
 }
 
 .dojo_button {
-    background: linear-gradient(180deg, #8b4513, #6a1806);
+    background: linear-gradient(180deg, #9b4513, #8a1806);
     color: #000;
     font-family: 'Sawarabi Mincho', serif;
     border: none;
-    padding: 10px 10px;
+    padding: 5px 10px;
+    margin-top: 5px;
     border-radius: 8px;
     box-shadow: 0 8px #3e1c00;
     cursor: pointer;
     transition: all 0.2s;
 
     &:hover {
-        box-shadow: 0 6px #3e1c00;
+        box-shadow: 0 6px #4e1c00;
         transform: translateY(2px);
     }
 
     &:active {
-        box-shadow: 0 2px #3e1c00;
+        box-shadow: 0 2px #4e1c00;
         transform: translateY(2px);
     }
 }
