@@ -6,23 +6,24 @@
 
 .link_container {
     border: 2px solid black;
-    margin: 0 16px;
-
-    text-align: center;
-    padding: 20px;
     font-size: 16px;
+    margin: 0 16px;
+    padding: 20px;
+    text-align: center;
 }
 
 .link_button {
     background-color: white;
     display: flex;
     justify-content: center;
-    text-align: center;
     margin-top: 24px;
+    text-align: center;
+
     .link {
-        font-size: 24px;
         border: 1px solid black;
+        font-size: 24px;
         padding: 4px;
+
         &:hover {
             background-color: skyblue;
         }

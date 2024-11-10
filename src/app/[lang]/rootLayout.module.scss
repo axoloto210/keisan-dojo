@@ -1,0 +1,13 @@
+.root_body {
+    --tw-bg-opacity: 1;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity)) /* #64748b */;
+
+    main {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 768px;
+        min-height: 100vh;
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity)) /* #ffffff */;
+    }
+}

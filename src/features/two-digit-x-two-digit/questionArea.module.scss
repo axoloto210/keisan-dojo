@@ -1,24 +1,24 @@
 .container {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 .question {
-    padding: 16px;
     font-size: 4rem;
+    padding: 16px;
 }
 
 .dojo_button {
     background: linear-gradient(180deg, #9b4513, #8a1806);
-    color: #000;
-    font-family: 'Sawarabi Mincho', serif;
     border: none;
-    padding: 5px 10px;
-    margin-top: 5px;
     border-radius: 8px;
     box-shadow: 0 8px #3e1c00;
+    color: #000;
     cursor: pointer;
+    font-family: 'Sawarabi Mincho', serif;
+    margin-top: 5px;
+    padding: 5px 10px;
     transition: all 0.2s;
 
     &:hover {
