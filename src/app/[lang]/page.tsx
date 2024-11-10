@@ -28,7 +28,7 @@ export default async function Home(props: {
             </div>
             <div className={style.linkButton}>
                 <Link className={style.link} href={`${lang}/indian`}>
-                    {`indian`}
+                    {homeDict.indian}
                 </Link>
             </div>
             {/* <Link href={`${lang}/guide/indian-method`}>
