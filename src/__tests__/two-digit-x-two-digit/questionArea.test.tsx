@@ -49,7 +49,7 @@ describe('two-x-two Question Area', () => {
         expect(answerElement).toHaveTextContent(String(answer))
     })
 
-    test('should generate firstDigit and secondDigit between 11 and 99 (100 times)', () => {
+    test('should generate firstNumber and secondNumber between 11 and 99 (100 times)', () => {
         const clickHandlerNext = jest.fn()
 
         for (let i = 0; i < 100; i++) {
