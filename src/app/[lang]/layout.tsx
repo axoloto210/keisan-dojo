@@ -1,9 +1,10 @@
+import style from '@/app/[lang]/rootLayout.module.scss'
 import { Header } from '@/components/layout/Header'
+import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
+import { Language } from '@/i18n/settings'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import '../globals.css'
-import { Language } from '@/i18n/settings'
-import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
-import { Analytics } from '@vercel/analytics/react'
 
 export async function generateMetadata(props: {
     params: Promise<{ lang: Language }>
@@ -33,11 +34,9 @@ export default async function RootLayout(
 
     return (
         <html lang={`${lang}`}>
-            <body className="bg-slate-500">
+            <body className={style.root_body}>
                 <Header lang={lang} />
-                <main className="bg-white max-w-screen-md mx-auto min-h-screen">
-                    {children}
-                </main>
+                <main>{children}</main>
                 <Analytics />
             </body>
         </html>

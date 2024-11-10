@@ -1,15 +1,31 @@
-.linkButton {
+.menu {
+    font-size: 32px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.link_container {
+    border: 2px solid black;
+    font-size: 16px;
+    margin: 0 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+.link_button {
+    background-color: white;
     display: flex;
     justify-content: center;
-    text-align: center;
     margin-top: 24px;
+    text-align: center;
+
     .link {
+        border: 1px solid black;
         font-size: 24px;
-        border: 1px solid blue;
-        border-radius: 8px;
         padding: 4px;
+
         &:hover {
-            background-color: red;
+            background-color: skyblue;
         }
     }
 }

@@ -1,10 +1,10 @@
 .container {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 .question {
-    padding: 16px;
     font-size: 4rem;
+    padding: 16px;
 }
