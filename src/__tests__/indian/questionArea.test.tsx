@@ -80,7 +80,7 @@ describe('indian two-x-two Question Area', () => {
                 .split(' × ')
                 .map(Number)
 
-            // Check that both digits are between 11 and 99
+            // Check that both numbers are between 11 and 99
             expect(firstNumber).toBeGreaterThanOrEqual(11)
             expect(firstNumber).toBeLessThanOrEqual(99)
             expect(secondNumber).toBeGreaterThanOrEqual(11)
