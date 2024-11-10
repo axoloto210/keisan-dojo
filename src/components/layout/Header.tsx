@@ -11,7 +11,7 @@ export const Header = async ({ lang }: HeaderProps) => {
     return (
         <header className={style.header}>
             <h1 className="text-4xl font-bold text-left">
-                <Link href={`/${lang}`} className=" hover:text-red-600">
+                <Link href={`/${lang}`} className={style.title}>
                     {dict.title}
                 </Link>
             </h1>
