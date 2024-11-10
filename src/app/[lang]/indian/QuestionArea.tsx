@@ -9,8 +9,8 @@ type QuestionAreaProps = {
 }
 
 export const QuestionArea = (props: QuestionAreaProps) => {
-    const [firstDigit, setFirstDigit] = useState<number>()
-    const [secondDigit, setSecondDigit] = useState<number>()
+    const [firstNumber, setFirstNumber] = useState<number>()
+    const [secondNumber, setSecondNumber] = useState<number>()
 
     const { clickHandlerNext, dict } = props
 
@@ -23,8 +23,8 @@ export const QuestionArea = (props: QuestionAreaProps) => {
             Math.floor(firstRandomNumber / 10) * 10 +
             (10 - (firstRandomNumber % 10))
 
-        setFirstDigit(firstRandomNumber)
-        setSecondDigit(secondRandomNumber)
+        setFirstNumber(firstRandomNumber)
+        setSecondNumber(secondRandomNumber)
     }, [])
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
@@ -51,42 +51,40 @@ export const QuestionArea = (props: QuestionAreaProps) => {
         }
     }, [isDisplayAnswer, clickHandlerNext])
 
+    if (firstNumber == null || secondNumber == null) {
+        return <Loading />
+    }
+
     return (
         <>
-            {!!firstDigit && !!secondDigit ? (
-                <div className={questionAreaStyle.container}>
-                    <div className={questionAreaStyle.question}>
-                        {firstDigit} × {secondDigit}
-                    </div>
-                    {isDisplayAnswer ? (
-                        <>
-                            <div className={questionAreaStyle.question}>
-                                {firstDigit * secondDigit}
-                            </div>
-                            <button
-                                onClick={props.clickHandlerNext}
-                                className={questionAreaStyle.question}
-                            >
-                                {dict.next}⏎
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <div className={questionAreaStyle.question}>
-                                ？？？
-                            </div>
-                            <button
-                                onClick={clickHandlerDisplayAnswer}
-                                className={questionAreaStyle.question}
-                            >
-                                {dict.answer}⏎
-                            </button>
-                        </>
-                    )}
+            <div className={questionAreaStyle.container}>
+                <div className={questionAreaStyle.question}>
+                    {firstNumber} × {secondNumber}
                 </div>
-            ) : (
-                <Loading />
-            )}
+                {isDisplayAnswer ? (
+                    <>
+                        <div className={questionAreaStyle.question}>
+                            {firstNumber * secondNumber}
+                        </div>
+                        <button
+                            onClick={props.clickHandlerNext}
+                            className={questionAreaStyle.question}
+                        >
+                            {dict.next}⏎
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <div className={questionAreaStyle.question}>？？？</div>
+                        <button
+                            onClick={clickHandlerDisplayAnswer}
+                            className={questionAreaStyle.question}
+                        >
+                            {dict.answer}⏎
+                        </button>
+                    </>
+                )}
+            </div>
         </>
     )
 }
