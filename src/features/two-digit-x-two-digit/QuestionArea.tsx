@@ -5,6 +5,7 @@ import { Dictionary } from '@/i18n/dictionaries'
 
 type QuestionAreaProps = {
     clickHandlerNext: () => void
+    createNumbers: () => number[]
     dict: Dictionary
 }
 
@@ -12,20 +13,13 @@ export const QuestionArea = (props: QuestionAreaProps) => {
     const [firstNumber, setFirstNumber] = useState<number>()
     const [secondNumber, setSecondNumber] = useState<number>()
 
-    const { clickHandlerNext, dict } = props
+    const { clickHandlerNext, createNumbers, dict } = props
 
     useEffect(() => {
-        const firstRandomNumber =
-            Math.floor(Math.random() * 9) * 10 +
-            Math.floor(Math.random() * 9) +
-            11
-        const secondRandomNumber =
-            Math.floor(firstRandomNumber / 10) * 10 +
-            (10 - (firstRandomNumber % 10))
-
+        const [firstRandomNumber, secondRandomNumber] = createNumbers()
         setFirstNumber(firstRandomNumber)
         setSecondNumber(secondRandomNumber)
-    }, [])
+    }, [createNumbers])
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
 

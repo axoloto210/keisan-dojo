@@ -1,10 +1,11 @@
 'use client'
 
-import { QuestionArea } from '@/app/[lang]/two-digit-x-two-digit/QuestionArea'
+import { QuestionArea } from '@/features/two-digit-x-two-digit/QuestionArea'
 import { useState } from 'react'
 
-import questionAreaStyle from '@/app/[lang]/two-digit-x-two-digit/questionArea.module.scss'
+import questionBoxStyle from '@/app/[lang]/two-digit-x-two-digit/questionBox.module.scss'
 import { Dictionary } from '@/i18n/dictionaries'
+import { createNumbers } from './createNumbers'
 
 type QuestionBoxProps = {
     dict: Dictionary
@@ -20,12 +21,13 @@ export function QuestionBox(questionBoxProps: QuestionBoxProps) {
 
     return (
         <>
-            <div className={questionAreaStyle.container}>
-                <div className={questionAreaStyle.question}>
+            <div className={questionBoxStyle.container}>
+                <div className={questionBoxStyle.question}>
                     Q.{questionCount}
                 </div>
                 <QuestionArea
                     key={questionCount}
+                    createNumbers={createNumbers}
                     clickHandlerNext={clickHandlerNext}
                     dict={dict}
                 />

@@ -1,4 +1,5 @@
-import { QuestionArea } from '@/app/[lang]/two-digit-x-two-digit/QuestionArea'
+import { createNumbers } from '@/app/[lang]/two-digit-x-two-digit/createNumbers'
+import { QuestionArea } from '@/features/two-digit-x-two-digit/QuestionArea'
 import {
     Dictionary,
     DICTIONARY_NAMES,
@@ -24,7 +25,13 @@ describe('two-x-two Question Area', () => {
 
     test('should display the question and answer correctly', () => {
         const clickHandlerNext = jest.fn()
-        render(<QuestionArea clickHandlerNext={clickHandlerNext} dict={dict} />)
+        render(
+            <QuestionArea
+                clickHandlerNext={clickHandlerNext}
+                createNumbers={createNumbers}
+                dict={dict}
+            />
+        )
 
         const questionElement = screen.getByText(/\d+ × \d+/)
 
@@ -54,7 +61,11 @@ describe('two-x-two Question Area', () => {
 
         for (let i = 0; i < 100; i++) {
             render(
-                <QuestionArea clickHandlerNext={clickHandlerNext} dict={dict} />
+                <QuestionArea
+                    clickHandlerNext={clickHandlerNext}
+                    createNumbers={createNumbers}
+                    dict={dict}
+                />
             )
 
             const questionElement = screen.getByText(/\d+ × \d+/)
