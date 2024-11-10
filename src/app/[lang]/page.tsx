@@ -11,9 +11,8 @@ export default async function Home(props: {
 
     const { lang } = params
 
-    const [homeDict, indianMethodDict] = await Promise.all([
+    const [homeDict] = await Promise.all([
         await getDictionary(lang, DICTIONARY_NAMES.HOME),
-        await getDictionary(lang, DICTIONARY_NAMES.INDIAN_METHOD),
     ])
     return (
         <>
@@ -31,9 +30,11 @@ export default async function Home(props: {
                     {homeDict.indian}
                 </Link>
             </div>
-            {/* <Link href={`${lang}/guide/indian-method`}>
-                {indianMethodDict.title}
-            </Link> */}
+            <div className={style.linkButton}>
+                <Link className={style.link} href={`${lang}/indian-2`}>
+                    {homeDict['indian-2']}
+                </Link>
+            </div>
         </>
     )
 }

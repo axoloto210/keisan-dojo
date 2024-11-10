@@ -2,5 +2,6 @@
     "title": "Dojo du calcul",
     "description": "Vous pouvez vous entraîner à calculer, par exemple en mémorisant des multiplications à deux chiffres.",
     "two-x-two": "2 × 2 chiffres",
-    "indian": "Style indien (2 x 2 chiffres)"
+    "indian": "Style indien (2 x 2 chiffres)",
+    "indian-2": "Style indien (10 places égales)"
 }
