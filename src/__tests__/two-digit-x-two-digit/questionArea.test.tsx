@@ -65,15 +65,15 @@ describe('two-x-two Question Area', () => {
                 throw new Error('Question text is null')
             }
 
-            const [firstDigit, secondDigit] = questionText
+            const [firstNumber, secondNumber] = questionText
                 .split(' × ')
                 .map(Number)
 
             // Check that both digits are between 11 and 99
-            expect(firstDigit).toBeGreaterThanOrEqual(11)
-            expect(firstDigit).toBeLessThanOrEqual(99)
-            expect(secondDigit).toBeGreaterThanOrEqual(11)
-            expect(secondDigit).toBeLessThanOrEqual(99)
+            expect(firstNumber).toBeGreaterThanOrEqual(11)
+            expect(firstNumber).toBeLessThanOrEqual(99)
+            expect(secondNumber).toBeGreaterThanOrEqual(11)
+            expect(secondNumber).toBeLessThanOrEqual(99)
 
             cleanup()
         }
