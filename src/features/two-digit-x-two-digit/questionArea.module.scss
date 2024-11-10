@@ -8,3 +8,25 @@
     padding: 16px;
     font-size: 4rem;
 }
+
+.dojo_button {
+    background: linear-gradient(180deg, #8b4513, #6a1806);
+    color: #000;
+    font-family: 'Sawarabi Mincho', serif;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    box-shadow: 0 8px #3e1c00;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        box-shadow: 0 6px #3e1c00;
+        transform: translateY(2px);
+    }
+
+    &:active {
+        box-shadow: 0 2px #3e1c00;
+        transform: translateY(2px);
+    }
+}

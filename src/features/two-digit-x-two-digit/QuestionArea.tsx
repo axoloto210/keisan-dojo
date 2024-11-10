@@ -62,7 +62,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                         </div>
                         <button
                             onClick={props.clickHandlerNext}
-                            className={questionAreaStyle.question}
+                            className={`${questionAreaStyle.question} ${questionAreaStyle.dojo_button}`}
                         >
                             {dict.next}⏎
                         </button>
@@ -72,7 +72,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                         <div className={questionAreaStyle.question}>？？？</div>
                         <button
                             onClick={clickHandlerDisplayAnswer}
-                            className={questionAreaStyle.question}
+                            className={`${questionAreaStyle.question} ${questionAreaStyle.dojo_button}`}
                         >
                             {dict.answer}⏎
                         </button>
