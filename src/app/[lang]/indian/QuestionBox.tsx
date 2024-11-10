@@ -1,10 +1,11 @@
 'use client'
 
-import { QuestionArea } from '@/app/[lang]/indian/QuestionArea'
+import { QuestionArea } from '@/features/two-digit-x-two-digit/QuestionArea'
 import { useState } from 'react'
 
-import questionAreaStyle from '@/app/[lang]/indian/questionArea.module.scss'
+import questionAreaStyle from '@/app/[lang]/indian/questionBox.module.scss'
 import { Dictionary } from '@/i18n/dictionaries'
+import { createNumbers } from './createRandomNumber'
 
 type QuestionBoxProps = {
     dict: Dictionary
@@ -27,6 +28,7 @@ export function QuestionBox(questionBoxProps: QuestionBoxProps) {
                 <QuestionArea
                     key={questionCount}
                     clickHandlerNext={clickHandlerNext}
+                    createNumbers={createNumbers}
                     dict={dict}
                 />
             </div>
