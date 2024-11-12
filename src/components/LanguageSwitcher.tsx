@@ -1,11 +1,11 @@
 'use client'
 
 import { AVAILABLE_LANGUAGES, DEFAULT_LOCALE } from '@/i18n/settings'
-import style from './languageSwitcher.module.scss'
-import { useState } from 'react'
-import { getCookie, setCookie } from 'cookies-next' // https://www.npmjs.com/package/cookies-next
 import { SWITCHED_LANGUAGE_KEY } from '@/middleware'
+import { getCookie, setCookie } from 'cookies-next' // https://www.npmjs.com/package/cookies-next
 import { usePathname, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import style from './languageSwitcher.module.scss'
 
 export function LanguageSwitcher() {
     const router = useRouter()
