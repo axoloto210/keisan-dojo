@@ -1,6 +1,7 @@
 {
     "title": "Calculation Dojo",
-    "description": "You can practice calculation, such as memorizing two-digit multiplications.",
+    "description": "Calculation Dojo. You can practice two-digit multiplication by heart and Indian-style calculations.",
+    "topDescription": "You can practice two-digit multiplication by heart and Indian-style calculations.",
     "menu": "Training Menu",
     "two-x-two": "2 × 2 digits",
     "indian": "Indian style (2 × 2 digits)",
