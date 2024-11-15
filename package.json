@@ -19,7 +19,7 @@
     "babel-plugin-react-compiler": "0.0.0-experimental-23b8160-20240916",
     "cookies-next": "^4.2.1",
     "negotiator": "^0.6.3",
-    "next": "15.0.1",
+    "next": "15.0.3",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "server-only": "^0.0.1"
