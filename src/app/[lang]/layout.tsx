@@ -17,9 +17,6 @@ export async function generateMetadata(props: {
     return {
         title: dict.title,
         description: dict.description,
-        verification: {
-            google: process.env.GOOGLE_VERIFICATION,
-        },
     }
 }
 

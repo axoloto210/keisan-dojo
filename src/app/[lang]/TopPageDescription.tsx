@@ -11,7 +11,7 @@ export function TopPageDescription(props: TopPageDescriptionProps) {
     return (
         <>
             <div className={style.descriptionContainer}>
-                <h2 className={style.description}>{dict.description}</h2>
+                <h2 className={style.description}>{dict.topDescription}</h2>
             </div>
         </>
     )
