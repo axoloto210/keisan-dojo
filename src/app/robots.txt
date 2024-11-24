@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /guide/
-
-Sitemap: https://keisan-dojo.vercel.app/sitemap.xml
