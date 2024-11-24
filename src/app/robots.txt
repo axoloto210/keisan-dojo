@@ -1,8 +1,0 @@
-User-Agent: *
-Disallow: /
-Disallow: /guide/
-Allow: /ja/
-Allow: /en-US/
-Allow: /fr/
-
-Sitemap: https://www.calculation-dojo.com/sitemap.xml
