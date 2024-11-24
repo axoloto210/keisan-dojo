@@ -1,5 +1,8 @@
 User-Agent: *
-Allow: /
+Disallow: /
 Disallow: /guide/
+Allow: /ja/
+Allow: /en-US/
+Allow: /fr/
 
-Sitemap: https://keisan-dojo.vercel.app/sitemap.xml
+Sitemap: https://www.calculation-dojo.com/sitemap.xml
