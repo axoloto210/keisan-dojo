@@ -5,7 +5,9 @@
     background-color: $main-color;
     color: white;
     display: flex;
+    position: sticky;
     padding: 16px;
+    top: 0px;
     h1 {
         font-size: 36px;
         font-weight: 700;
