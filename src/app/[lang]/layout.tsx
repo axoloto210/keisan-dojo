@@ -1,7 +1,7 @@
 import style from '@/app/[lang]/rootLayout.module.scss'
 import { Header } from '@/components/layout/Header'
 import { DICTIONARY_NAMES, getDictionary } from '@/i18n/dictionaries'
-import { Language } from '@/i18n/settings'
+import { DEFAULT_LOCALE, Language } from '@/i18n/settings'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import '../globals.css'
@@ -11,7 +11,7 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
     const params = await props.params
 
-    const { lang } = params
+    const lang = params.lang ?? DEFAULT_LOCALE
 
     const dict = await getDictionary(lang, DICTIONARY_NAMES.HOME)
     return {
@@ -28,7 +28,7 @@ export default async function RootLayout(
 ) {
     const params = await props.params
 
-    const { lang } = params
+    const lang = params.lang ?? DEFAULT_LOCALE
 
     const { children } = props
 

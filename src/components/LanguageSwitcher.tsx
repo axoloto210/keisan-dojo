@@ -1,7 +1,7 @@
 'use client'
 
 import { AVAILABLE_LANGUAGES, DEFAULT_LOCALE } from '@/i18n/settings'
-import { SWITCHED_LANGUAGE_KEY } from '@/middleware'
+import { SWITCHED_LANGUAGE_KEY } from '@/i18n/settings'
 import { getCookie, setCookie } from 'cookies-next' // https://www.npmjs.com/package/cookies-next
 import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
