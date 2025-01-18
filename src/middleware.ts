@@ -1,20 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import { AVAILABLE_LOCALES, DEFAULT_LOCALE } from './i18n/settings'
+import { NextRequest, NextResponse } from 'next/server'
+import { REGEX_CRAWLERS } from './const/regexCrawlers'
+import {
+    AVAILABLE_LOCALES,
+    DEFAULT_LOCALE,
+    SWITCHED_LANGUAGE_KEY,
+} from './i18n/settings'
 
 function getLocale(request: NextRequest) {
     const headers = {
         'accept-language': request.headers.get('accept-language') ?? '',
     }
-
-    // クライアントの望む言語を優先順で取得
-    let negotiatedLanguage = new Negotiator({ headers }).languages()
-
+    const negotiatedLanguage = new Negotiator({ headers }).languages()
     return match(negotiatedLanguage, AVAILABLE_LOCALES, DEFAULT_LOCALE)
 }
-
-export const SWITCHED_LANGUAGE_KEY = 'switchedLanguage'
 
 const isValidLanguage = (targetLanguage: string) => {
     return AVAILABLE_LOCALES.some((locale) => {
@@ -22,29 +22,39 @@ const isValidLanguage = (targetLanguage: string) => {
     })
 }
 
+const rewriteCrawler = (request: NextRequest) => {
+    const userAgent = request.headers.get('user-agent') || ''
+
+    if (REGEX_CRAWLERS.test(userAgent)) {
+        request.nextUrl.pathname = `/${DEFAULT_LOCALE}${request.nextUrl}`
+        return NextResponse.rewrite(request.nextUrl)
+    }
+}
+
 export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
 
-    const pathnameHasLocale = AVAILABLE_LOCALES.some((locale) => {
-        return pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    })
+    const pathnameHasLocale = AVAILABLE_LOCALES.some(
+        (locale) =>
+            pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+    )
 
-    if (!pathnameHasLocale) {
-        let lang =
-            request.cookies.has(SWITCHED_LANGUAGE_KEY) &&
-            isValidLanguage(request.cookies.get(SWITCHED_LANGUAGE_KEY)!.value)
-                ? request.cookies.get(SWITCHED_LANGUAGE_KEY)!.value
-                : getLocale(request)
-
-        request.nextUrl.pathname = `/${lang}${pathname}`
-        return NextResponse.redirect(request.nextUrl)
+    if (pathnameHasLocale) {
+        return NextResponse.next()
     }
+    rewriteCrawler(request)
 
-    return NextResponse.next()
+    const lang =
+        request.cookies.has(SWITCHED_LANGUAGE_KEY) &&
+        isValidLanguage(request.cookies.get(SWITCHED_LANGUAGE_KEY)!.value)
+            ? request.cookies.get(SWITCHED_LANGUAGE_KEY)!.value
+            : getLocale(request)
+
+    request.nextUrl.pathname = `/${lang}${pathname}`
+    return NextResponse.redirect(request.nextUrl)
 }
 
 export const config = {
-    // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
     matcher: [
         '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
     ],

@@ -1,3 +1,5 @@
+export const SWITCHED_LANGUAGE_KEY = 'switchedLanguage'
+
 export const DEFAULT_LOCALE = 'ja'
 
 export const AVAILABLE_LANGUAGES = [
