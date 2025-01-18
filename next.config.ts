@@ -7,9 +7,9 @@ const nextConfig: NextConfig = {
         api: 'modern',
         silenceDeprecations: ['legacy-js-api'],
     },
-    experimental: {
-        reactCompiler: true,
-    },
+    // experimental: {
+    //     reactCompiler: true,
+    // },
 }
 
 export default nextConfig

@@ -1,0 +1,94 @@
+.kumiteRoom {
+    min-height: 100vh;
+    background-color: #f9fafb; // bg-gray-50
+
+    header {
+        background-color: #ffffff;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // shadow-sm
+
+        .headerContainer {
+            max-width: 80rem; // max-w-7xl
+            margin: 0 auto;
+            padding: 1rem 1rem; // py-4 px-4
+
+            @media (min-width: 640px) {
+                padding-left: 1.5rem; // sm:px-6
+                padding-right: 1.5rem;
+            }
+
+            @media (min-width: 1024px) {
+                padding-left: 2rem; // lg:px-8
+                padding-right: 2rem;
+            }
+
+            .headerContent {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h1 {
+                    font-size: 1.5rem; // text-2xl
+                    font-weight: 600; // font-semibold
+                    color: #111827; // text-gray-900
+                }
+            }
+        }
+    }
+
+    main {
+        max-width: 80rem; // max-w-7xl
+        margin: 0 auto;
+        padding: 2rem 1rem; // py-8 px-4
+
+        @media (min-width: 640px) {
+            padding-left: 1.5rem; // sm:px-6
+            padding-right: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            padding-left: 2rem; // lg:px-8
+            padding-right: 2rem;
+        }
+
+        .loginContainer {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem; // rounded-lg
+            padding: 1.5rem; // p-6
+
+            h2 {
+                font-size: 1.125rem; // text-lg
+                font-weight: 500; // font-medium
+                margin-bottom: 1rem; // mb-4
+            }
+
+            .inputGroup {
+                display: flex;
+                gap: 1rem; // gap-4
+
+                input {
+                    flex: 1;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 0.375rem; // rounded-md
+                    padding: 0.5rem 0.75rem; // px-3 py-2
+
+                    &::placeholder {
+                        color: #9ca3af;
+                    }
+                }
+
+                button {
+                    background-color: #3b82f6; // bg-blue-500
+                    color: #ffffff;
+                    padding: 0.5rem 1rem; // px-4 py-2
+                    border-radius: 0.375rem; // rounded-md
+                    transition: background-color 0.2s; // transition-colors
+
+                    &:hover {
+                        background-color: #2563eb; // hover:bg-blue-600
+                    }
+                }
+            }
+        }
+    }
+}

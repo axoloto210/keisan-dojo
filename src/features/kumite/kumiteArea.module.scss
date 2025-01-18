@@ -1,0 +1,38 @@
+.container {
+    padding: 1rem;
+}
+
+.roomInputSection {
+    margin-bottom: 1rem;
+
+    input {
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+.button {
+    background-color: #3b82f6;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}
+
+.errorMessage {
+    color: #ef4444;
+}
+
+.currentRoom {
+    margin-bottom: 1rem;
+    display: flex;
+
+    p {
+        margin-right: 1rem;
+    }
+}
