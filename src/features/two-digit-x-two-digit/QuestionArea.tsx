@@ -1,5 +1,5 @@
 import { Loading } from '@/components/layout/Loading'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import questionAreaStyle from './questionArea.module.scss'
 import { Dictionary } from '@/i18n/dictionaries'
 
@@ -23,9 +23,10 @@ export const QuestionArea = (props: QuestionAreaProps) => {
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
 
-    const clickHandler = useCallback(() => {
+    // React Compiler によってuseCallbackを使用せずともメモ化され、useEffectが何度も発火しないようになっている。
+    const clickHandler = () => {
         isDisplayAnswer ? clickHandlerNext() : setIsDisplayAnswer(true)
-    }, [isDisplayAnswer, clickHandlerNext])
+    }
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
