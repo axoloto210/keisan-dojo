@@ -39,7 +39,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown)
         }
-    }, [isDisplayAnswer, clickHandler])
+    }, [clickHandler])
 
     if (firstNumber == null || secondNumber == null) {
         return <Loading />
