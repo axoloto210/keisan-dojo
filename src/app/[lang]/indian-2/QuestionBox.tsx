@@ -14,6 +14,11 @@ type QuestionBoxProps = {
 export function QuestionBox(questionBoxProps: QuestionBoxProps) {
     const { dict } = questionBoxProps
     const [questionCount, setQuestionCount] = useState<number>(1)
+    const [d, setD] = useState(false)
+
+    const clickD = () => {
+        setD(!d)
+    }
 
     const clickHandlerNext = () => {
         setQuestionCount((count) => count + 1)
@@ -22,6 +27,7 @@ export function QuestionBox(questionBoxProps: QuestionBoxProps) {
     return (
         <>
             <div className={questionAreaStyle.container}>
+                <div>{d ? 'true' : 'false'}</div>
                 <div className={questionAreaStyle.question}>
                     Q.{questionCount}
                 </div>
@@ -31,6 +37,7 @@ export function QuestionBox(questionBoxProps: QuestionBoxProps) {
                     createNumbers={createNumbers}
                     dict={dict}
                 />
+                <button onClick={clickD}>d切り替え</button>
             </div>
         </>
     )

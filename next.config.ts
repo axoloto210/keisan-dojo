@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         silenceDeprecations: ['legacy-js-api'],
     },
     experimental: {
-        reactCompiler: true,
+        reactCompiler: false,
     },
 }
 

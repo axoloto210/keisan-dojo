@@ -23,11 +23,12 @@ export const QuestionArea = (props: QuestionAreaProps) => {
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
 
-    const clickHandler = useCallback(() => {
+    const clickHandler = () => {
         isDisplayAnswer ? clickHandlerNext() : setIsDisplayAnswer(true)
-    }, [isDisplayAnswer, clickHandlerNext])
+    }
 
     useEffect(() => {
+        console.log('fire!!!!!!!!!!!!!!!!!!!!!!!!')
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
                 clickHandler()
