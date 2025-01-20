@@ -11,13 +11,16 @@ export const useRoom = (socket: Socket) => {
     const [errorMessage, setErrorMessage] = useState<string>('')
 
     useEffect(() => {
-        // socket.on('connect', () => {
-        //   console.log('Socket connected!');
-        // });
+        socket.on('connect', () => {
+            console.log('Socket connected!')
+        })
 
-        // socket.on('disconnect', () => {
-        //   console.log('Socket disconnected!');
-        // });
+        socket.on('disconnect', () => {
+            console.log('Socket disconnected!')
+        })
+        socket.on(ROOM_EVENTS.JOIN_ROOM, ({ message }) => {
+            console.log(message)
+        })
         socket.on(ROOM_EVENTS.ROOM_FULL, ({ message }) => {
             setErrorMessage(message)
         })

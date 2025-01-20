@@ -1,14 +1,12 @@
-import { DefaultEventsMap, Server } from "socket.io";
+import { Server } from "socket.io";
 import { ROOM_EVENTS } from "./const";
 
 
-
-
 export const roomServer = (
-  io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>
+  io: Server
 ) => {
-  const rooms = new Map(); // roomId -> Set()
-  const users = new Map(); // socket.id -> userName
+  const roomMap = new Map(); // roomId -> Set()
+  const userMap = new Map(); // socketId -> userName
 
   // const cardGameHandlers = new Map<string, CardGameHandler>(); //roomId -> CardGameHandler
 
@@ -16,6 +14,7 @@ export const roomServer = (
     console.log("User connected:", socket.id);
 
     socket.on(ROOM_EVENTS.JOIN_ROOM, ({ roomId, userName }) => {
+      console.log(`ユーザー ${socket.id} がルーム ${roomId} に参加しました。`)
       // ゲーム処理用のインスタンスを部屋ごとに作成
       // let cardGameHandler = cardGameHandlers.get(roomId);
 
@@ -36,13 +35,13 @@ export const roomServer = (
       //   return;
       // }
 
-      if (!rooms.has(roomId)) {
-        rooms.set(roomId, new Set());
+      if (!roomMap.has(roomId)) {
+        roomMap.set(roomId, new Set());
       }
-      rooms.get(roomId).add(socket.id);
+      roomMap.get(roomId).add(socket.id);
 
-      if (!users.has(socket.id)) {
-        users.set(socket.id, userName);
+      if (!userMap.has(socket.id)) {
+        userMap.set(socket.id, userName);
       }
 
     });
@@ -56,13 +55,13 @@ export const roomServer = (
         message: `部屋:${roomId}が解散されました。`,
       });
 
-      if (rooms.has(roomId)) {
-        rooms.get(roomId).delete(socket.id);
-        if (rooms.get(roomId).size === 0) {
-          rooms.delete(roomId);
+      if (roomMap.has(roomId)) {
+        roomMap.get(roomId).delete(socket.id);
+        if (roomMap.get(roomId).size === 0) {
+          roomMap.delete(roomId);
         }
-        if (users.get(socket.id)) {
-          users.delete(socket.id);
+        if (userMap.get(socket.id)) {
+          userMap.delete(socket.id);
         }
 
       }
@@ -70,17 +69,17 @@ export const roomServer = (
     });
 
     socket.on(ROOM_EVENTS.DISCONNECT, () => {
-      rooms.forEach((roomUserSet, roomId) => {
+      roomMap.forEach((roomUserSet, roomId) => {
         if (roomUserSet.has(socket.id)) {
           roomUserSet.delete(socket.id);
           // cardGameHandlers.get(roomId)?.cleanupRoom();
           if (roomUserSet.size === 0) {
-            rooms.delete(roomId);
+            roomMap.delete(roomId);
           }
         }
       });
       console.log(
-        `ユーザー${users.get(socket.id)}:${socket.id}が切断しました。`
+        `ユーザー${userMap.get(socket.id)}:${socket.id}が切断しました。`
       );
     });
   });
