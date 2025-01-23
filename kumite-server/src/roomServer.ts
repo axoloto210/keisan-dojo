@@ -1,5 +1,6 @@
 import { Server } from "socket.io";
 import { ROOM_EVENTS } from "./const";
+import { KumiteHandler } from "./kumiteHandler";
 
 
 export const roomServer = (
@@ -8,32 +9,32 @@ export const roomServer = (
   const roomMap = new Map(); // roomId -> Set()
   const userMap = new Map(); // socketId -> userName
 
-  // const cardGameHandlers = new Map<string, CardGameHandler>(); //roomId -> CardGameHandler
+  const kumiteHandlers = new Map<string, KumiteHandler>(); //roomId -> KumiteHandler
 
   io.on(ROOM_EVENTS.CONNECTION, (socket) => {
     console.log("User connected:", socket.id);
 
     socket.on(ROOM_EVENTS.JOIN_ROOM, ({ roomId, userName }) => {
       console.log(`ユーザー ${socket.id} がルーム ${roomId} に参加しました。`)
-      // ゲーム処理用のインスタンスを部屋ごとに作成
-      // let cardGameHandler = cardGameHandlers.get(roomId);
 
-      // if (!cardGameHandler) {
-      //   cardGameHandler = new CardGameHandler(io, roomId);
-      //   cardGameHandlers.set(roomId, cardGameHandler);
-      // }
+      let kumiteHandler = kumiteHandlers.get(roomId);
+
+      if (!kumiteHandler) {
+        kumiteHandler = new KumiteHandler(io, roomId);
+        kumiteHandlers.set(roomId, kumiteHandler);
+      }
 
       // ルームが満員でない場合のみ参加処理
-      // if (cardGameHandler.canJoin(socket)) {
-      //   socket.join(roomId);
-      //   console.log(
-      //     `${userName}：${socket.id} がルーム ${roomId} に参加しました。`
-      //   );
-      //   cardGameHandler.setupSocket(socket, userName);
-      // } else {
-      //   console.log(`ルーム:${roomId} は満員。`)
-      //   return;
-      // }
+      if (kumiteHandler.canJoin(socket)) {
+        socket.join(roomId);
+        console.log(
+          `${userName}：${socket.id} がルーム ${roomId} に参加しました。`
+        );
+        kumiteHandler.setupSocket(socket, userName);
+      } else {
+        console.log(`ルーム:${roomId} は満員。`)
+        return;
+      }
 
       if (!roomMap.has(roomId)) {
         roomMap.set(roomId, new Set());
@@ -48,7 +49,7 @@ export const roomServer = (
 
     socket.on(ROOM_EVENTS.LEAVE_ROOM, (roomId) => {
       socket.leave(roomId);
-      // cardGameHandlers.get(roomId)?.cleanupRoom();
+      kumiteHandlers.get(roomId)?.cleanupRoom();
 
       console.log(roomId)
       io.to(roomId).emit(ROOM_EVENTS.ROOM_DISMISS, {
@@ -72,7 +73,7 @@ export const roomServer = (
       roomMap.forEach((roomUserSet, roomId) => {
         if (roomUserSet.has(socket.id)) {
           roomUserSet.delete(socket.id);
-          // cardGameHandlers.get(roomId)?.cleanupRoom();
+          kumiteHandlers.get(roomId)?.cleanupRoom();
           if (roomUserSet.size === 0) {
             roomMap.delete(roomId);
           }
