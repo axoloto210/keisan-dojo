@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Socket } from 'socket.io-client'
-import { ROOM_EVENTS } from '../../../kumite-server/src/const'
-import { UserContext } from './contexts/userContext'
+import { ROOM_EVENTS } from '@/../kumite-server/src/const'
+import { UserContext } from '@/features/kumite/contexts/userContext'
 
 export const useRoom = (socket: Socket) => {
     const user = useContext(UserContext)
