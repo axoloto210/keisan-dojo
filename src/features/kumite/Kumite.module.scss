@@ -1,0 +1,44 @@
+.hp_container {
+    display: flex;
+}
+
+.hp_box {
+    width: 32px;
+    height: 32px;
+}
+
+.result_overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+
+    .result_text {
+        font-size: 6rem;
+        font-weight: 700;
+        animation: bounce 1s infinite;
+
+        &.win {
+            color: #fde047;
+        }
+
+        &.lose {
+            color: #3b82f6;
+        }
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
