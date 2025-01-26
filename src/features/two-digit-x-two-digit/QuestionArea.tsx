@@ -23,18 +23,15 @@ export const QuestionArea = (props: QuestionAreaProps) => {
 
     const [isDisplayAnswer, setIsDisplayAnswer] = useState<boolean>(false)
 
-    const clickHandlerDisplayAnswer = () => {
-        setIsDisplayAnswer(true)
+    // React Compiler によってuseCallbackを使用せずともメモ化され、useEffectが何度も発火しないようになっている。
+    const clickHandler = () => {
+        isDisplayAnswer ? clickHandlerNext() : setIsDisplayAnswer(true)
     }
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
-                if (isDisplayAnswer) {
-                    clickHandlerNext()
-                } else {
-                    clickHandlerDisplayAnswer()
-                }
+                clickHandler()
             }
         }
 
@@ -43,7 +40,7 @@ export const QuestionArea = (props: QuestionAreaProps) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown)
         }
-    }, [isDisplayAnswer, clickHandlerNext])
+    }, [clickHandler])
 
     if (firstNumber == null || secondNumber == null) {
         return <Loading />
@@ -60,24 +57,22 @@ export const QuestionArea = (props: QuestionAreaProps) => {
                         <div className={questionAreaStyle.question}>
                             {firstNumber * secondNumber}
                         </div>
-                        <button
-                            onClick={props.clickHandlerNext}
-                            className={`${questionAreaStyle.question} ${questionAreaStyle.dojo_button}`}
-                        >
-                            {dict.next}⏎
-                        </button>
                     </>
                 ) : (
                     <>
-                        <div className={questionAreaStyle.question}>？？？</div>
-                        <button
-                            onClick={clickHandlerDisplayAnswer}
-                            className={`${questionAreaStyle.question} ${questionAreaStyle.dojo_button}`}
-                        >
-                            {dict.answer}⏎
-                        </button>
+                        <div className={questionAreaStyle.question}>? ? ?</div>
                     </>
                 )}
+                <button
+                    onClick={clickHandler}
+                    className={`${questionAreaStyle.question} ${questionAreaStyle.dojo_button}`}
+                >
+                    <span className={questionAreaStyle.shadow}></span>
+                    <span className={questionAreaStyle.edge}></span>
+                    <span className={questionAreaStyle.front}>
+                        {isDisplayAnswer ? dict.next : dict.answer}⏎
+                    </span>
+                </button>
             </div>
         </>
     )

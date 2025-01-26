@@ -10,24 +10,82 @@
 }
 
 .dojo_button {
-    background: linear-gradient(180deg, #9b4513, #8a1806);
+    position: relative;
+    background: transparent;
+    padding: 0px;
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 8px #3e1c00;
-    color: #000;
     cursor: pointer;
-    font-family: 'Sawarabi Mincho', serif;
-    margin-top: 5px;
-    padding: 5px 10px;
-    transition: all 0.2s;
-
+    outline-offset: 4px;
+    outline-color: #006b8f;
+    transition: filter 250ms;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     &:hover {
-        box-shadow: 0 6px #4e1c00;
-        transform: translateY(2px);
+        filter: brightness(110%);
+        .front {
+            transform: translateY(-6px);
+            transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
+        .shadow {
+            transform: translateY(4px);
+            transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+        }
     }
-
     &:active {
-        box-shadow: 0 2px #4e1c00;
-        transform: translateY(2px);
+        .front {
+            transform: translateY(-2px);
+            transition: transform 34ms;
+        }
+        .shadow {
+            transform: translateY(1px);
+            transition: transform 34ms;
+        }
     }
+    &:hover &:active &:focus:not(:focus-visible) {
+        outline: none;
+    }
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #75b5c6;
+    border-radius: 8px;
+    filter: blur(2px);
+    will-change: transform;
+    transform: translateY(2px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    background: linear-gradient(
+        to right,
+        #5eb0c4 0%,
+        #99d9ea 8%,
+        #5eb0c4 92%,
+        #4a9cb0 100%
+    );
+}
+
+.front {
+    display: block;
+    position: relative;
+    border-radius: 8px;
+    background: #99d9ea;
+    padding: 16px 32px;
+    color: #003545;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    transform: translateY(-4px);
+    transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
