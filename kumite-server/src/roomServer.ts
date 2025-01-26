@@ -32,7 +32,7 @@ export const roomServer = (
         );
         kumiteHandler.setupSocket(socket, userName);
       } else {
-        console.log(`ルーム:${roomId} は満員。`)
+        console.log(`${userName}：${socket.id} がルーム ${roomId} に参加しようとしましたが満員でした。`)
         return;
       }
 
