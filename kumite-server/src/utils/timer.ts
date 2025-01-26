@@ -9,8 +9,6 @@ export class Timer {
 
     saveStartTime() {
         this.startTime = performance.now()
-        console.log(this.playerId)
-        console.log('start:', this.startTime)
     }
 
     saveEndTime() {
@@ -18,8 +16,6 @@ export class Timer {
             return
         }
         this.endTime = performance.now()
-        console.log(this.playerId)
-        console.log('start:', this.endTime)
     }
 
     getTime() {
