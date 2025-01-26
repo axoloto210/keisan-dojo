@@ -23,6 +23,9 @@
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "server-only": "^0.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
@@ -31,7 +34,6 @@
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.14",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "eslint": "^8",
@@ -44,7 +46,9 @@
     "prettier": "3.3.3",
     "sass": "^1.79.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7",
+    "typescript": "^5.7.3"
   },
   "pnpm": {
     "overrides": {
