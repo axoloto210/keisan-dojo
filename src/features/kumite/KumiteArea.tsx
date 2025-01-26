@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { io, Socket } from 'socket.io-client'
 import { useRoom } from '@/features/kumite/hooks/useRoom'
 import styles from '@/features/kumite/kumiteArea.module.scss'
+import { Kumite } from './Kumite'
 
 const socket: Socket = io(process.env.NEXT_PUBLIC_BACKEND_URL)
 
@@ -52,7 +53,9 @@ export const KumiteArea = () => {
                 </div>
             )}
 
-            {isInRoom && <div className={styles.hello}>hello</div>}
+            {isInRoom && (
+                <Kumite socket={socket} currentRoomId={currentRoomId} />
+            )}
         </div>
     )
 }

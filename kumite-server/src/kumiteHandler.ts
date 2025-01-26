@@ -1,6 +1,6 @@
 import { Server, Socket } from 'socket.io'
 import { ROOM_EVENTS } from './const'
-import { createQuestionNumbers } from './utils/createQuestionNumbers'
+import { createQuestionNumbersAndSolution } from './utils/createQuestionNumbers'
 import { Timer } from './utils/timer'
 
 const INITIAL_HP = 5
@@ -17,7 +17,7 @@ export const KUMITE_PHASES = {
 type Phase = (typeof KUMITE_PHASES)[keyof typeof KUMITE_PHASES]
 
 type PlayerStatus = {
-    playerName: string
+    userName: string
     hp: number
     calculationTime?: number
 }
@@ -26,12 +26,18 @@ type PlayerStatuses = {
     [playerId: string]: PlayerStatus
 }
 
-type QuestionNumbers = number[]
+export type QuestionNumbers = [number, number]
+export type Solution = number
 
-type KumiteStatus = {
+export type KumiteStatus = {
     phase: Phase
     playerStatuses: PlayerStatuses
     questionNumbers?: QuestionNumbers
+    solution?: number
+}
+
+export type CalculationAnswer = {
+    answer: number
 }
 
 export class KumiteHandler {
@@ -41,7 +47,8 @@ export class KumiteHandler {
     private playerMap: Map<string, string> = new Map() // socketId -> userName
     private timerMap: Map<string, Timer> = new Map() // socketId -> timer
 
-    private questionNumbers: number[] = []
+    private questionNumbers: QuestionNumbers = [0, 0]
+    private solution?: Solution
 
     private kumiteStatus: KumiteStatus = {
         phase: KUMITE_PHASES.BEFORE_START,
@@ -82,7 +89,7 @@ export class KumiteHandler {
         this.playerMap.set(playerId, userName)
         this.timerMap.set(playerId, new Timer(playerId))
 
-        socket.on(KUMITE_PHASES.CALCULATION, (data) => {
+        socket.on(KUMITE_PHASES.CALCULATION, (data: CalculationAnswer) => {
             this.handleCalculation(socket, data)
         })
 
@@ -100,19 +107,25 @@ export class KumiteHandler {
         })
         // ゲーム開始時の初期化処理
 
-        const newPlayerStatuses: PlayerStatuses = Array.from(
+        const newPlayerStatuses = Array.from(
             this.playerMap.keys()
-        ).reduce((previousValue, playerName) => {
+        ).reduce<PlayerStatuses>((previousValue, userName) => {
+            const name = this.playerMap.get(userName)
+            if (name === undefined) {
+                return previousValue
+            }
+
             return {
                 ...previousValue,
-                [playerName]: {
-                    userName: this.playerMap.get(playerName),
+                [userName]: {
+                    userName: name,
                     hp: INITIAL_HP,
                 },
             }
         }, {})
 
-        this.questionNumbers = createQuestionNumbers()
+        ;[this.questionNumbers, this.solution] =
+            createQuestionNumbersAndSolution()
 
         this.kumiteStatus = {
             phase: KUMITE_PHASES.CALCULATION,
@@ -120,9 +133,9 @@ export class KumiteHandler {
             questionNumbers: this.questionNumbers,
         }
 
-        this.timerMap.forEach((timer, playerId)=>{
+        this.timerMap.forEach((timer, _playerId) => {
             timer.saveStartTime()
-        } )
+        })
 
         this.sendGameStatusToClient()
     }
@@ -130,7 +143,7 @@ export class KumiteHandler {
     private playerAnswerMap = new Map<string, number>()
 
     // 回答を受け付けて登録するハンドラー
-    handleCalculation(socket: Socket, data: { answer: number }) {
+    handleCalculation(socket: Socket, data: CalculationAnswer) {
         const playerId = socket.id
 
         if (!this.playerMap.has(playerId) || !this.isGameStarted) {
@@ -161,6 +174,7 @@ export class KumiteHandler {
     private resolveAnswers() {
         this.kumiteStatus = {
             ...this.kumiteStatus,
+            solution: this.solution,
             phase: KUMITE_PHASES.RESOLVE,
         }
 
@@ -172,57 +186,90 @@ export class KumiteHandler {
     }
 
     private resolveRound() {
-        console.log('ラウンド解決中')
+        // 計算結果解決
+        const players = Array.from(
+            Object.keys(this.kumiteStatus.playerStatuses)
+        )
+        const [player1Id, player2Id] = players
+
+        const player1Status = this.kumiteStatus.playerStatuses[player1Id]
+        const player2Status = this.kumiteStatus.playerStatuses[player2Id]
+
+        const isPlayer1Correct =
+            this.playerAnswerMap.get(player1Id) === this.solution
+        const isPlayer2Correct =
+            this.playerAnswerMap.get(player2Id) === this.solution
+
+        // 勝敗判定
+        const isPlayer1WinOrDraw = this.isPlayer1WinOrDraw({
+            isPlayer1Correct,
+            isPlayer2Correct,
+            player1Status,
+            player2Status,
+        })
+
+        // ダメージを適用
+        if (isPlayer1WinOrDraw === 'draw') {
+            player1Status.hp -= 1
+            player2Status.hp -= 1
+        } else if (isPlayer1WinOrDraw) {
+            player2Status.hp -= 1
+        } else {
+            player1Status.hp -= 1
+        }
+
+        // ゲームの勝敗判定
+        if (player1Status.hp === 0 || player2Status.hp === 0) {
+            this.kumiteStatus.phase = KUMITE_PHASES.GAME_END
+        }
+
+        ;[this.questionNumbers, this.solution] =
+            createQuestionNumbersAndSolution()
         // 次のラウンドの準備
+        this.playerAnswerMap.clear()
+        player1Status.calculationTime = undefined
+        player2Status.calculationTime = undefined
         this.kumiteStatus = {
             ...this.kumiteStatus,
+            questionNumbers: this.questionNumbers,
+            solution: undefined,
             phase:
                 this.kumiteStatus.phase === KUMITE_PHASES.GAME_END
                     ? KUMITE_PHASES.GAME_END
                     : KUMITE_PHASES.CALCULATION,
         }
+        this.timerMap.forEach((timer, _playerId) => {
+            timer.saveStartTime()// TODO:出題前に準備OKボタンを追加して移す
+        })
         this.sendGameStatusToClient()
     }
 
-    private determineBattleResult(player1Id: string, player2Id: string) {
-        const player1Status = this.kumiteStatus.playerStatuses[player1Id]
-        const player2Status = this.kumiteStatus.playerStatuses[player2Id]
-
-        //カードの勝敗判定とダメージ適用
-        this.applyDamage({
-            player1Id,
-            player2Id,
-            player1Status,
-            player2Status,
-        })
-
-        // ゲームの勝敗判定
-        if (player1Status.hp <= 0 || player2Status.hp <= 0) {
-            this.kumiteStatus.phase = KUMITE_PHASES.GAME_END
-        }
-    }
-    private applyDamage({
-        player1Id,
-        player2Id,
+    private isPlayer1WinOrDraw({
         player1Status,
         player2Status,
+        isPlayer1Correct,
+        isPlayer2Correct,
     }: {
-        player1Id: string
-        player2Id: string
         player1Status: PlayerStatus
         player2Status: PlayerStatus
-    }) {
-        //player1 勝利時
-        if (true) {
-            player2Status.hp -= 1
-        } // player2 勝利時
-        else if (true) {
-            player1Status.hp -= 1
-        } // 引き分け時
-        else {
-            let basePoint = 1
-            player1Status.hp -= basePoint
-            player2Status.hp -= basePoint
+        isPlayer1Correct: boolean
+        isPlayer2Correct: boolean
+    }): boolean | 'draw' {
+        if (isPlayer1Correct && !isPlayer2Correct) {
+            return true
+        } else if (!isPlayer1Correct && isPlayer2Correct) {
+            return false
+        } else if (isPlayer1Correct && isPlayer2Correct) {
+            const player1Time = player1Status.calculationTime
+            const player2Time = player2Status.calculationTime
+
+            //player1 win
+            if ((player1Time ?? 0) < (player2Time ?? 0)) {
+                return true
+            } else if ((player1Time ?? 0) > (player2Time ?? 0)) {
+                return false
+            }
         }
+        return 'draw'
     }
 }
